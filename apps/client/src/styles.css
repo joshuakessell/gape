@@ -35,10 +35,10 @@ canvas {
   user-select: none;
 }
 
-.hud__title {
-  font-weight: 600;
-  font-size: 14px;
-  opacity: 0.9;
+.hud__score {
+  font-weight: 700;
+  font-size: 16px;
+  opacity: 0.95;
 }
 
 .hud__hint {
