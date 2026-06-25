@@ -1,5 +1,4 @@
-import { type Disc, type PlacedProp, type PropMotion, applyEaten, stepProp } from '@gape/shared';
-import { MANIFEST } from '../content/manifest';
+import { MANIFEST, type Disc, type PlacedProp, type PropMotion, applyEaten, stepProp } from '@gape/shared';
 import { holeState } from '../holeState';
 import { growth, placedProps, propRuntime } from './propsRuntime';
 

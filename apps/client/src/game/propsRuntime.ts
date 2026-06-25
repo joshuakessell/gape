@@ -1,5 +1,4 @@
-import { type GrowthState, type PlacedProp, type PropMotion, initialGrowth, placeProps } from '@gape/shared';
-import { MANIFEST } from '../content/manifest';
+import { MANIFEST, type GrowthState, type PlacedProp, type PropMotion, initialGrowth, placeProps } from '@gape/shared';
 import { PLAY_BOUNDS, holeState } from '../holeState';
 
 const SEED = 1337;

@@ -1,8 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import { type InstancedMesh, Object3D } from 'three';
-import type { PlacedProp, PropDef } from '@gape/shared';
-import { MANIFEST } from '../content/manifest';
+import { MANIFEST, type PlacedProp, type PropDef } from '@gape/shared';
 import { growth, propRuntime, propsByDef } from '../game/propsRuntime';
 import { setHud } from '../game/store';
 import { stepSwallow } from '../game/swallowSystem';

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { type StepInput, stepProp } from '../swallowStep.js';
+import { PROP_PHASES, type StepInput, phaseFromCode, phaseToCode, stepProp } from '../swallowStep.js';
 
 const config = { sinkTime: 0.5, toppleTime: 0.4 };
 const disc = (r: number, x = 0) => ({ center: { x, z: 0 }, r });
@@ -55,5 +55,16 @@ describe('stepProp — gone is terminal', () => {
     const r = stepProp({ phase: 'gone', t: 0 }, input(disc(5), propAt(0)));
     expect(r.phase).toBe('gone');
     expect(r.scored).toBe(false);
+  });
+});
+
+describe('phase wire codes', () => {
+  it('round-trip every phase through its byte code', () => {
+    for (const phase of PROP_PHASES) {
+      expect(phaseFromCode(phaseToCode(phase))).toBe(phase);
+    }
+  });
+  it('falls back to idle for an unknown code', () => {
+    expect(phaseFromCode(99)).toBe('idle');
   });
 });

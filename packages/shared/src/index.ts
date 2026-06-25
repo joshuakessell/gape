@@ -8,3 +8,5 @@ export * from './layout.js';
 export * from './swallow.js';
 export * from './swallowStep.js';
 export * from './growth.js';
+export * from './world.js';
+export * from './content.js';
