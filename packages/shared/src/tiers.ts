@@ -1,32 +1,16 @@
-/** A growth tier the hole passes through as its radius increases. */
+/** A growth tier the hole passes through; the index labels its size. */
 export interface Tier {
   index: number;
   name: string;
-  minRadius: number;
 }
 
+// growth.ts advances tier by item count and uses growth.state.tier as the index
+// into this list; the HUD reads TIERS[tier].name. (No radius thresholds here —
+// the hole's radius is a continuous value owned by GrowthState.)
 export const TIERS: readonly Tier[] = [
-  { index: 0, name: 'pothole', minRadius: 0 },
-  { index: 1, name: 'manhole', minRadius: 2 },
-  { index: 2, name: 'sinkhole', minRadius: 5 },
-  { index: 3, name: 'crater', minRadius: 10 },
-  { index: 4, name: 'abyss', minRadius: 20 },
+  { index: 0, name: 'pothole' },
+  { index: 1, name: 'manhole' },
+  { index: 2, name: 'sinkhole' },
+  { index: 3, name: 'crater' },
+  { index: 4, name: 'abyss' },
 ];
-
-/** The highest tier whose minRadius the given radius has reached. */
-export function tierAt(radius: number): Tier {
-  let current = TIERS[0]!;
-  for (const tier of TIERS) {
-    if (radius >= tier.minRadius) current = tier;
-  }
-  return current;
-}
-
-export function isMaxTier(tier: Tier): boolean {
-  return tier.index === TIERS[TIERS.length - 1]!.index;
-}
-
-/** The next tier up, or the same tier if already max. */
-export function advanceTier(tier: Tier): Tier {
-  return isMaxTier(tier) ? tier : TIERS[tier.index + 1]!;
-}

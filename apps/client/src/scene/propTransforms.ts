@@ -1,6 +1,5 @@
 import type { Object3D } from 'three';
-import type { PlacedProp } from '@gape/shared';
-import type { PropRuntime } from '../game/propsRuntime';
+import type { PlacedProp, PropMotion } from '@gape/shared';
 
 const HIDDEN = 0.0001;
 
@@ -26,12 +25,13 @@ function writeToppling(obj: Object3D, placed: PlacedProp, t: number): void {
 }
 
 /** Compose this prop's instance transform for its current phase. */
-export function writeForPhase(obj: Object3D, placed: PlacedProp, rt: PropRuntime): void {
-  if (rt.phase === 'gone') {
+export function writeForPhase(obj: Object3D, placed: PlacedProp, motion: PropMotion): void {
+  if (motion.phase === 'gone') {
+    writeIdle(obj, placed); // self-contained hidden transform (no stale scratch reuse)
     obj.scale.setScalar(HIDDEN);
     return;
   }
-  if (rt.phase === 'sinking') return writeSinking(obj, placed, clamp01(rt.t));
-  if (rt.phase === 'toppling' || rt.phase === 'settled') return writeToppling(obj, placed, clamp01(rt.t));
+  if (motion.phase === 'sinking') return writeSinking(obj, placed, clamp01(motion.t));
+  if (motion.phase === 'toppling' || motion.phase === 'settled') return writeToppling(obj, placed, clamp01(motion.t));
   return writeIdle(obj, placed);
 }

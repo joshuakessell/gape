@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { type InstancedMesh, Object3D } from 'three';
 import type { PlacedProp, PropDef } from '@gape/shared';
 import { MANIFEST } from '../content/manifest';
@@ -34,6 +34,7 @@ function SwallowSystem(): null {
 function Archetype({ def }: { def: PropDef }) {
   const ref = useRef<InstancedMesh>(null);
   const geom = useMemo(() => geometryFor(def), [def]);
+  useEffect(() => () => geom.dispose(), [geom]); // free GPU buffers on unmount/HMR
   const list = propsByDef.get(def.id) ?? [];
   useFrame(() => writeInstances(ref.current, list));
   return (
