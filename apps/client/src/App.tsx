@@ -9,7 +9,7 @@ export function App() {
       <Canvas dpr={[1, 1.5]} shadows={false} gl={{ antialias: true }}>
         <color attach="background" args={['#1a1f2b']} />
         <Scene />
-        <Stats />
+        {import.meta.env.DEV && <Stats />}
       </Canvas>
       <Hud />
     </>

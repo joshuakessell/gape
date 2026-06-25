@@ -21,7 +21,6 @@
     "test:coverage": {
       "dependsOn": ["^build"],
       "outputs": ["coverage/**"]
-    },
-    "lint": {}
+    }
   }
 }

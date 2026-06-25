@@ -34,6 +34,10 @@ export const holeFragmentShader = /* glsl */ `
     float rim = smoothstep(0.35, 0.0, abs(d - r));
     vec3 col = mix(d < r ? hole : ground, uRimColor, rim * 0.9);
     gl_FragColor = vec4(col, 1.0);
+    // Match three's standard output pipeline (ACES tone map + sRGB encode) so the
+    // shader ground agrees with the meshBasicMaterial rim instead of rendering dark.
+    #include <tonemapping_fragment>
+    #include <colorspace_fragment>
   }
 `;
 
