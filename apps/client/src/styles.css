@@ -1,0 +1,48 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  background: #1a1f2b;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* touch-action:none gives clean tap-to-move on mobile (no scroll/zoom hijack). */
+canvas {
+  display: block;
+  touch-action: none;
+}
+
+.hud {
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  color: #e8eef7;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hud__title {
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.hud__hint {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 2px;
+}
