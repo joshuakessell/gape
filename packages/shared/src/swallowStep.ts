@@ -71,3 +71,14 @@ export function stepProp(motion: PropMotion, input: StepInput): StepResult {
       return { phase: 'gone', t: motion.t, scored: false };
   }
 }
+
+/** Stable wire order for syncing a prop's phase as a single byte. */
+export const PROP_PHASES: readonly PropPhase[] = ['idle', 'sinking', 'toppling', 'settled', 'gone'];
+
+export function phaseToCode(phase: PropPhase): number {
+  return PROP_PHASES.indexOf(phase);
+}
+
+export function phaseFromCode(code: number): PropPhase {
+  return PROP_PHASES[code] ?? 'idle';
+}

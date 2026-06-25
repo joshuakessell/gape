@@ -7,4 +7,7 @@ export * from './manifest.js';
 export * from './layout.js';
 export * from './swallow.js';
 export * from './swallowStep.js';
+export * from './clientSync.js';
 export * from './growth.js';
+export * from './world.js';
+export * from './content.js';

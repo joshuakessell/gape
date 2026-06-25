@@ -1,8 +1,8 @@
-import type { ContentManifest } from '@gape/shared';
+import type { ContentManifest } from './manifest.js';
 
-// Phase 1 props as primitive geometry keyed by this manifest. Footprints range
-// from tiny (swallowable immediately) to large (needs a few growths first).
-// Real CC0 GLB assets swap in later behind this same shape.
+// Canonical prop set, owned by shared so the authoritative server and the client
+// build the identical world from one seed. Primitive shapes/colors are render
+// hints (client-only); the server reads footprint/height/topple/points.
 export const MANIFEST: ContentManifest = {
   props: [
     { id: 'pebble', shape: 'box', class: 'small', footprintRadius: 0.35, height: 0.4, topple: false, points: 1, color: '#9aa0a6', spawnCount: 40, maxInstances: 40 },

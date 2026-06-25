@@ -10,7 +10,9 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@colyseus/core": "^0.17.44",
+    "@colyseus/core": "^0.16.24",
+    "@colyseus/schema": "^3.0.76",
+    "@colyseus/ws-transport": "^0.16.5",
     "@gape/shared": "workspace:*"
   },
   "devDependencies": {
