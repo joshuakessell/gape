@@ -3,3 +3,8 @@ export * from './footprint.js';
 export * from './movement.js';
 export * from './tiers.js';
 export * from './controls.js';
+export * from './manifest.js';
+export * from './layout.js';
+export * from './swallow.js';
+export * from './swallowStep.js';
+export * from './growth.js';

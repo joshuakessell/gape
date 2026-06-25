@@ -2,14 +2,19 @@ import { useHoleControls } from '../input/useHoleControls';
 import { CameraRig } from './CameraRig';
 import { Ground } from './Ground';
 import { Hole } from './Hole';
+import { Props } from './Props';
 
-// The ground shader and rim torus are unlit, so the scene needs no lights.
+// Props use Lambert shading, so the scene now has a hemisphere fill + key light.
+// (The ground shader and rim torus stay unlit and ignore these.)
 export function Scene() {
   const { onGroundPointerDown } = useHoleControls();
   return (
     <>
+      <hemisphereLight args={['#cfe0ff', '#3a3a3a', 0.6]} />
+      <directionalLight position={[12, 18, 6]} intensity={1.5} />
       <CameraRig />
       <Ground onPointerDown={onGroundPointerDown} />
+      <Props />
       <Hole />
     </>
   );
