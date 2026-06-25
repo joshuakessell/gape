@@ -1,4 +1,4 @@
-import type { Bounds, Vec2 } from '@gape/shared';
+import type { Vec2 } from '@gape/shared';
 
 /**
  * Mutable singleton driving the scene. This is deliberately NOT React state:
@@ -18,12 +18,3 @@ export const holeState: HoleState = {
   pressed: new Set<string>(),
   target: null,
 };
-
-/** Play-area half-extents (centered on origin); the hole clamps to these. */
-export const PLAY_BOUNDS: Bounds = { halfW: 24, halfH: 24 };
-
-/** Hole travel speed in world units per second. */
-export const HOLE_SPEED = 12;
-
-/** Cap a single frame's dt so a tab refocus can't teleport the hole. */
-export const MAX_DT = 0.05;

@@ -1,4 +1,5 @@
 import { useHoleControls } from '../input/useHoleControls';
+import { ServerSync } from '../net/ServerSync';
 import { CameraRig } from './CameraRig';
 import { Ground } from './Ground';
 import { Hole } from './Hole';
@@ -10,6 +11,7 @@ export function Scene() {
   const { onGroundPointerDown } = useHoleControls();
   return (
     <>
+      <ServerSync />
       <hemisphereLight args={['#cfe0ff', '#3a3a3a', 0.6]} />
       <directionalLight position={[12, 18, 6]} intensity={1.5} />
       <CameraRig />

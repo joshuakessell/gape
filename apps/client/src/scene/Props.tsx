@@ -2,9 +2,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import { type InstancedMesh, Object3D } from 'three';
 import { MANIFEST, type PlacedProp, type PropDef } from '@gape/shared';
-import { growth, propRuntime, propsByDef } from '../game/propsRuntime';
-import { setHud } from '../game/store';
-import { stepSwallow } from '../game/swallowSystem';
+import { propRuntime, propsByDef } from '../game/propsRuntime';
 import { geometryFor } from './propGeometry';
 import { writeForPhase } from './propTransforms';
 
@@ -20,14 +18,6 @@ function writeInstances(mesh: InstancedMesh | null, list: PlacedProp[]): void {
   }
   mesh.count = list.length;
   mesh.instanceMatrix.needsUpdate = true;
-}
-
-/** Runs the authoritative-ish local swallow step once per frame. */
-function SwallowSystem(): null {
-  useFrame((_, dt) => {
-    if (stepSwallow(dt)) setHud(growth.state.score, growth.state.tier);
-  });
-  return null;
 }
 
 function Archetype({ def }: { def: PropDef }) {
@@ -47,7 +37,6 @@ function Archetype({ def }: { def: PropDef }) {
 export function Props() {
   return (
     <>
-      <SwallowSystem />
       {MANIFEST.props.map((def) => (
         <Archetype key={def.id} def={def} />
       ))}

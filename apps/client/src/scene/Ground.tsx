@@ -2,10 +2,11 @@ import type { ThreeEvent } from '@react-three/fiber';
 import { useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import type { ShaderMaterial } from 'three';
-import { holeState, PLAY_BOUNDS } from '../holeState';
+import { WORLD } from '@gape/shared';
+import { holeState } from '../holeState';
 import { type HoleUniforms, holeFragmentShader, holeVertexShader, makeHoleUniforms } from './holeShader';
 
-const SIZE = (Math.max(PLAY_BOUNDS.halfW, PLAY_BOUNDS.halfH) + 8) * 2;
+const SIZE = (Math.max(WORLD.bounds.halfW, WORLD.bounds.halfH) + 8) * 2;
 
 interface GroundProps {
   onPointerDown?: (e: ThreeEvent<PointerEvent>) => void;

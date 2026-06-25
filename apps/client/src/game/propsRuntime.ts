@@ -1,12 +1,10 @@
-import { MANIFEST, type GrowthState, type PlacedProp, type PropMotion, initialGrowth, placeProps } from '@gape/shared';
-import { PLAY_BOUNDS, holeState } from '../holeState';
+import { MANIFEST, type PlacedProp, type PropMotion, WORLD, placeProps } from '@gape/shared';
 
-const SEED = 1337;
+/** Deterministic layout built from the shared seed/bounds, so every client and
+ *  the server agree on uid → position (the server only syncs phase codes). */
+export const placedProps: PlacedProp[] = placeProps(MANIFEST, WORLD.bounds, WORLD.seed);
 
-/** Deterministic world layout (same seed → same scatter on every load). */
-export const placedProps: PlacedProp[] = placeProps(MANIFEST, PLAY_BOUNDS, SEED);
-
-/** Per-prop motion/scoring phase, keyed by uid (see @gape/shared stepProp). */
+/** Per-prop animation phase, keyed by uid; driven by the server via syncMotion. */
 export const propRuntime = new Map<number, PropMotion>(
   placedProps.map((p): [number, PropMotion] => [p.uid, { phase: 'idle', t: 0 }]),
 );
@@ -23,6 +21,3 @@ function groupByDef(all: PlacedProp[]): Map<string, PlacedProp[]> {
 
 /** Placed props grouped by archetype, so each InstancedMesh owns its slice. */
 export const propsByDef: Map<string, PlacedProp[]> = groupByDef(placedProps);
-
-/** Mutable growth (score/radius/tier) for the local hole. */
-export const growth: { state: GrowthState } = { state: initialGrowth(holeState.radius) };
